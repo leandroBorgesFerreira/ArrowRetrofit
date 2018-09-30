@@ -1,4 +1,4 @@
-package retrofit.effectAdapter
+package effectAdapter
 
 import arrow.effects.IO
 import retrofit2.CallAdapter

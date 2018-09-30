@@ -1,4 +1,4 @@
-package retrofit.effectAdapter
+package effectAdapter
 
 import retrofit2.Call
 import retrofit2.CallAdapter

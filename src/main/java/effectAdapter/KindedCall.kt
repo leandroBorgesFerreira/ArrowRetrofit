@@ -1,4 +1,4 @@
-package retrofit.effectAdapter
+package effectAdapter
 
 import arrow.Kind
 import arrow.effects.typeclasses.Effect

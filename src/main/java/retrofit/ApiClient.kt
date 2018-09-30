@@ -1,14 +1,13 @@
 package retrofit
 
+import arrow.Kind
 import arrow.effects.IO
-import io.reactivex.Observable
 import repositories.dto.GithubAnswerDto
-import effectAdapter.KindedCall
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ApiClient {
+interface ApiClient<F> {
 
     @GET("search/repositories")
     fun getRepositories(@Query("q") language: String,
@@ -21,9 +20,9 @@ interface ApiClient {
                           @Query("page") page: Int): IO<GithubAnswerDto>
 
     @GET("search/repositories")
-    fun getRepositoriesEffect(@Query("q") language: String,
-                              @Query("sort") order: String,
-                              @Query("page") page: Int): KindedCall<GithubAnswerDto>
+    fun <F> getRepositoriesEffect(@Query("q") language: String,
+                                  @Query("sort") order: String,
+                                  @Query("page") page: Int): Kind<F, GithubAnswerDto>
 }
 
 fun apiClient(): ApiClient = retrofit().create(ApiClient::class.java)

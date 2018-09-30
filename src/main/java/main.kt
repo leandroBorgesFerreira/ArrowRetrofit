@@ -1,3 +1,4 @@
+import arrow.effects.ForIO
 import arrow.effects.IO
 import arrow.effects.effect
 import arrow.effects.fix
@@ -6,8 +7,8 @@ import retrofit.apiClient
 
 fun main(args: Array<String>) {
     apiClient()
-        .getRepositoriesEffect("Java", "star", 1)
-        .executeCall(IO.effect(), CommonPool)
+        .getRepositoriesEffect<ForIO>("Java", "star", 1)
+        .executeCall(IO.effect())
         .fix()
         .unsafeRunSync()
         .items

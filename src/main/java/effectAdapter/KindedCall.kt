@@ -12,7 +12,7 @@ import kotlin.coroutines.experimental.CoroutineContext
 
 class KindedCall<R>(private val call: Call<R>) {
 
-    fun <F> executeCall(async: Async<F>): Kind<F, R> =
+    fun <F> execute(async: Async<F>): Kind<F, R> =
         async.async { callBack ->
             call.enqueue(object : Callback<R> {
                 override fun onResponse(call: Call<R>, response: Response<R>) {

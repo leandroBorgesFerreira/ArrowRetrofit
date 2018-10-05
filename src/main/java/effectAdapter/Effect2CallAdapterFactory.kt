@@ -16,7 +16,9 @@ class Effect2CallAdapterFactory : CallAdapter.Factory() {
         val rawType = CallAdapter.Factory.getRawType(returnType)
 
         if (returnType !is ParameterizedType) {
-            throw IllegalStateException("${returnType.typeName} return type must be parameterized as IO<Foo> or IO<out Foo>")
+            val name = parseTypeName(returnType)
+            throw IllegalArgumentException("Return type must be parameterized as " +
+                "$name<Foo> or $name<out Foo>")
         }
 
         val effectType = CallAdapter.Factory.getParameterUpperBound(0, returnType)
@@ -28,3 +30,9 @@ class Effect2CallAdapterFactory : CallAdapter.Factory() {
         }
     }
 }
+
+private fun parseTypeName(type: Type) =
+    type.typeName
+        .split(".")
+        .last()
+

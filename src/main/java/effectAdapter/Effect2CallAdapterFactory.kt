@@ -18,7 +18,7 @@ class Effect2CallAdapterFactory : CallAdapter.Factory() {
     val effectType = CallAdapter.Factory.getParameterUpperBound(0, returnType)
 
     return when (rawType) {
-      IO::class.java -> IO2CallAdapter(effectType)
+      IO::class.java -> IO2CallAdapter<Type>(effectType)
       CallK::class.java -> CallKind2CallAdapter<Type>(effectType)
       else -> null
     }

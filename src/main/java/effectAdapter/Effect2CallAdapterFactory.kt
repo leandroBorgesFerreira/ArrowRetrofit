@@ -19,7 +19,7 @@ class Effect2CallAdapterFactory : CallAdapter.Factory() {
 
     return when (rawType) {
       IO::class.java -> IO2CallAdapter(effectType)
-      CallK::class.java -> CallKind2CallAdapter(effectType)
+      CallK::class.java -> CallKind2CallAdapter<Type>(effectType)
       else -> null
     }
   }

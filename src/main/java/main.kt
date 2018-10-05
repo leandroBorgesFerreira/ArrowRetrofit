@@ -1,28 +1,25 @@
 import arrow.effects.IO
-import arrow.effects.ObservableK
 import arrow.effects.async
-import arrow.effects.effect
 import arrow.effects.fix
+import repositories.dto.GithubAnswerDto
 import retrofit.apiClient
+import retrofit2.Response
 
 fun main(args: Array<String>) {
-    apiClient()
-        .getRepositoriesObservable("Java", "star", 1)
-        .subscribe { dto ->
-            dto.items
-                .forEach { repo ->
-                    println(repo.description)
-                }
-        }
+  //    apiClient()
+  //        .getRepositoriesObservable("Java", "star", 1)
+  //        .subscribe { dto ->
+  //            dto.items
+  //                .forEach { repo ->
+  //                    println(repo.description)
+  //                }
+  //        }
 
-//    apiClient()
-//        .getRepositoriesEffect("Java", "star", 1)
-//        .execute(ObservableK.async())
-//        .fix()
+  val unsafeRunSync: Response<GithubAnswerDto> = apiClient()
+    .getRepositoriesEffect("Java", "star", 1)
+    .async(IO.async())
+    .fix()
+    .unsafeRunSync()
 
-//        .unsafeRunSync()
-//        .items
-//        .forEach { repo -> println(repo.description) }
-
-    println("End")
+  println("End")
 }

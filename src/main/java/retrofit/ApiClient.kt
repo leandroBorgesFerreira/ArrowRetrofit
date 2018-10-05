@@ -1,7 +1,7 @@
 package retrofit
 
 import arrow.effects.IO
-import effectAdapter.KindedCall
+import effectAdapter.CallK
 import io.reactivex.Observable
 import repositories.dto.GithubAnswerDto
 import retrofit2.Call
@@ -23,7 +23,7 @@ interface ApiClient {
     @GET("search/repositories")
     fun getRepositoriesEffect(@Query("q") language: String,
                               @Query("sort") order: String,
-                              @Query("page") page: Int): KindedCall<GithubAnswerDto>
+                              @Query("page") page: Int): CallK<GithubAnswerDto>
 
     @GET("search/repositories")
     fun getRepositoriesObservable(@Query("q") language: String,

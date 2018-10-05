@@ -8,19 +8,19 @@ import java.lang.reflect.Type
 
 class Effect2CallAdapterFactory : CallAdapter.Factory() {
 
-  override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? {
-    val rawType = CallAdapter.Factory.getRawType(returnType)
+    override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? {
+        val rawType = CallAdapter.Factory.getRawType(returnType)
 
-    if (returnType !is ParameterizedType) {
-      throw IllegalStateException("${returnType.typeName} return type must be parameterized as IO<Foo> or IO<out Foo>")
+        if (returnType !is ParameterizedType) {
+            throw IllegalStateException("${returnType.typeName} return type must be parameterized as IO<Foo> or IO<out Foo>")
+        }
+
+        val effectType = CallAdapter.Factory.getParameterUpperBound(0, returnType)
+
+        return when (rawType) {
+            IO::class.java -> IO2CallAdapter<Type>(effectType)
+            CallK::class.java -> CallKind2CallAdapter<Type>(effectType)
+            else -> null
+        }
     }
-
-    val effectType = CallAdapter.Factory.getParameterUpperBound(0, returnType)
-
-    return when (rawType) {
-      IO::class.java -> IO2CallAdapter<Type>(effectType)
-      CallK::class.java -> CallKind2CallAdapter<Type>(effectType)
-      else -> null
-    }
-  }
 }

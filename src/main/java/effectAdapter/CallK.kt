@@ -8,9 +8,9 @@ import retrofit2.Call
 import retrofit2.Response
 
 data class CallK<R>(val call: Call<R>) {
-  fun <F> async(async: Async<F>): Kind<F, Response<R>> = async.async { call.enqueue(ResponseCallback(it)) }
+    fun <F> async(async: Async<F>): Kind<F, Response<R>> = async.async { call.enqueue(ResponseCallback(it)) }
 
-  fun <F> defer(defer: MonadDefer<F>): Kind<F, Response<R>> = defer { call.execute() }
+    fun <F> defer(defer: MonadDefer<F>): Kind<F, Response<R>> = defer { call.execute() }
 
-  fun <F> catch(defer: MonadError<F, Throwable>): Kind<F, Response<R>> = defer.run { catch { call.execute() } }
+    fun <F> catch(defer: MonadError<F, Throwable>): Kind<F, Response<R>> = defer.run { catch { call.execute() } }
 }

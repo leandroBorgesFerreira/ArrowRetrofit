@@ -10,9 +10,9 @@ import retrofit2.Response
 
 class ProcCallBack<R>(private val proc: (Either<Throwable, R>) -> Unit) : Callback<R> {
     override fun onResponse(call: Call<R>, response: Response<R>) {
-        if(response.isSuccessful) {
+        if (response.isSuccessful) {
             val body = response.body()
-            if(body != null) {
+            if (body != null) {
                 proc(body.right())
             } else {
                 proc(IllegalStateException("The request returned a null body").left())

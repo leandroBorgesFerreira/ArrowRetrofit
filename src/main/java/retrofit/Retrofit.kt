@@ -5,6 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import effectAdapter.Effect2CallAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import rxjava2.RxJava2CallAdapterFactory
 
 private const val baseUrl = "https://api.github.com/"
 
@@ -20,6 +21,7 @@ private fun getRetrofitBuilderDefaults() =
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(Effect2CallAdapterFactory())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 
 private fun provideOkHttpClientOAuth() : OkHttpClient = httpClientBuilder().build()
 

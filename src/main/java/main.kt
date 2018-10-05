@@ -1,8 +1,3 @@
-import arrow.effects.IO
-import arrow.effects.ObservableK
-import arrow.effects.async
-import arrow.effects.effect
-import arrow.effects.fix
 import retrofit.apiClient
 
 fun main(args: Array<String>) {

@@ -8,6 +8,10 @@ import java.lang.reflect.Type
 
 class Effect2CallAdapterFactory : CallAdapter.Factory() {
 
+    companion object {
+        fun create() = Effect2CallAdapterFactory()
+    }
+
     override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? {
         val rawType = CallAdapter.Factory.getRawType(returnType)
 

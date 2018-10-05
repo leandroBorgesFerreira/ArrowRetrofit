@@ -20,7 +20,7 @@ private fun getRetrofitBuilderDefaults() =
     Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(Effect2CallAdapterFactory())
+        .addCallAdapterFactory(Effect2CallAdapterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 
 private fun provideOkHttpClientOAuth() : OkHttpClient = httpClientBuilder().build()

@@ -45,6 +45,8 @@ dependencies {
     kapt "io.arrow-kt:arrow-annotations-processor:$arrow"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+
+    testImplementation 'com.squareup.okhttp3:mockwebserver:3.11.0'
 }
 
 compileKotlin {

@@ -20,7 +20,7 @@ class Effect2CallAdapterFactoryTest : StringSpec({
 
     val factory = Effect2CallAdapterFactory.create()
 
-    "Non Async should return null" {
+    "Non Async Class should return null" {
         factory.get(object : TypeToken<List<String>>() {}.type, NO_ANNOTATIONS, retrofit) shouldBe null
     }
 

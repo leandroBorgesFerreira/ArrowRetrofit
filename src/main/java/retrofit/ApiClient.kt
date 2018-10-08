@@ -31,6 +31,4 @@ interface ApiClient {
                                   @Query("page") page: Int): Observable<GithubAnswerDto>
 }
 
-
-
 fun apiClient(): ApiClient = retrofit().create(ApiClient::class.java)
